@@ -1,0 +1,37 @@
+{
+  "name": "autoservis",
+  "version": "1.0.0",
+  "description": "MERN aplikacija za online zakazivanje usluga autoservisa",
+  "main": "backend/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node backend/server.js",
+    "server": "nodemon backend/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "data:import": "node backend/seeder.js",
+    "data:destroy": "node backend/seeder.js -d"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VukStefanovicIT312024/AutoServis.git"
+  },
+  "author": "Vuk Stefanović IT31/2024",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/VukStefanovicIT312024/AutoServis/issues"
+  },
+  "homepage": "https://github.com/VukStefanovicIT312024/AutoServis#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.9.5"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.9"
+  }
+}
