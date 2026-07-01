@@ -24,3 +24,15 @@ yarn-debug.log*
 yarn-error.log*
 
 frontend/build/
+# .NET build output
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+
+# SQLite local database files
+*.db
+*.db-shm
+*.db-wal
+
