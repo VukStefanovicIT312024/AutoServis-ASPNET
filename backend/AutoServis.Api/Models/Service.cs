@@ -12,9 +12,9 @@ namespace AutoServis.Api.Models
 
         public decimal Price { get; set; }
 
-        public int DurationMinutes { get; set; }
+        public int Duration { get; set; }
 
-        public string Activities { get; set; } = string.Empty;
+        public string Includes { get; set; } = string.Empty;
 
         public List<Appointment> Appointments { get; set; } = new();
     }
