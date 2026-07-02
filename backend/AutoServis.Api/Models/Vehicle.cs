@@ -10,7 +10,7 @@ namespace AutoServis.Api.Models
 
         public int Year { get; set; }
 
-        public string RegistrationNumber { get; set; } = string.Empty;
+        public string PlateNumber { get; set; } = string.Empty;
 
         public int UserId { get; set; }
 

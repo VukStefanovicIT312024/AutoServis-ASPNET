@@ -23,7 +23,7 @@ namespace AutoServis.Api.Data
                 .IsUnique();
 
             modelBuilder.Entity<Vehicle>()
-                .HasIndex(v => v.RegistrationNumber)
+                .HasIndex(v => v.PlateNumber)
                 .IsUnique();
 
             modelBuilder.Entity<Service>()
