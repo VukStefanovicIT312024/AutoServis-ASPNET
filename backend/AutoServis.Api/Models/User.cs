@@ -10,7 +10,7 @@ namespace AutoServis.Api.Models
 
         public string PasswordHash { get; set; } = string.Empty;
 
-        public string Role { get; set; } = "User";
+        public string Role { get; set; } = "user";
 
         public string? Phone { get; set; }
 
