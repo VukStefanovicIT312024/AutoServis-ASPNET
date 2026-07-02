@@ -1,5 +1,6 @@
 using AutoServis.Api.Data;
 using AutoServis.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,10 +22,13 @@ namespace AutoServis.Api.Controllers
         {
             var services = await _context.Services
                 .OrderBy(service => service.Id)
-                .Select(service => ToServiceResponse(service))
                 .ToListAsync();
 
-            return Ok(services);
+            var response = services
+                .Select(service => ToServiceResponse(service))
+                .ToList();
+
+            return Ok(response);
         }
 
         [HttpGet("{id}")]
@@ -40,6 +44,7 @@ namespace AutoServis.Api.Controllers
             return Ok(ToServiceResponse(service));
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPost]
         public async Task<ActionResult<object>> CreateService(ServiceRequest request)
         {
@@ -54,9 +59,9 @@ namespace AutoServis.Api.Controllers
 
             var service = new Service
             {
-                Name = request.Name,
-                Category = request.Category,
-                Description = request.Description,
+                Name = request.Name.Trim(),
+                Category = request.Category.Trim(),
+                Description = request.Description.Trim(),
                 Price = request.Price,
                 Duration = request.Duration,
                 Includes = string.Join("|", request.Includes ?? new List<string>())
@@ -68,6 +73,7 @@ namespace AutoServis.Api.Controllers
             return CreatedAtAction(nameof(GetService), new { id = service.Id }, ToServiceResponse(service));
         }
 
+        [Authorize(Roles = "admin")]
         [HttpPut("{id}")]
         public async Task<ActionResult<object>> UpdateService(int id, ServiceRequest request)
         {
@@ -87,9 +93,9 @@ namespace AutoServis.Api.Controllers
                 return BadRequest(new { message = "Naziv, kategorija, opis, cena i trajanje su obavezni." });
             }
 
-            service.Name = request.Name;
-            service.Category = request.Category;
-            service.Description = request.Description;
+            service.Name = request.Name.Trim();
+            service.Category = request.Category.Trim();
+            service.Description = request.Description.Trim();
             service.Price = request.Price;
             service.Duration = request.Duration;
             service.Includes = string.Join("|", request.Includes ?? new List<string>());
@@ -99,6 +105,7 @@ namespace AutoServis.Api.Controllers
             return Ok(ToServiceResponse(service));
         }
 
+        [Authorize(Roles = "admin")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteService(int id)
         {
