@@ -10,7 +10,7 @@ namespace AutoServis.Api.Models
 
         public string? ProblemDescription { get; set; }
 
-        public string Status { get; set; } = "Zakazano";
+        public string Status { get; set; } = "zakazano";
 
         public int UserId { get; set; }
 
